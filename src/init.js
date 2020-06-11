@@ -6,9 +6,8 @@
  * @email:     calebniitettehaddy@gmail.com 
  * @twitter:   @cnttaddy
  * @github :   https://github.com/niitettehtsuru/BrickBreaker
- * @codepen:   https://codepen.io/niitettehtsuru/pen/NWqENww
  * @license:   GNU General Public License v3.0
- */  
+ */    
 let 
 c   = document.getElementById("brickBreakerCanvas"), 
 img = document.getElementById("backgroundphoto"),

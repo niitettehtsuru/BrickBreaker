@@ -1,5 +1,13 @@
-'use strict';  
-//creates and builds game levels
+'use strict';   
+/* Creates and builds game levels
+ * ------------------------------
+ * @author:    Caleb Nii Tetteh Tsuru Addy
+ * @date:      8th June, 2020 
+ * @email:     calebniitettehaddy@gmail.com 
+ * @twitter:   @cnttaddy
+ * @github :   https://github.com/niitettehtsuru/BrickBreaker
+ * @license:   GNU General Public License v3.0
+ */ 
 class Level
 {
     constructor(game)

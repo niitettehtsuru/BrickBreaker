@@ -1,14 +1,13 @@
 'use strict'; 
-/* A paddle for hitting tha ball
+/* A paddle for hitting the ball
  * -----------------------------
  * @author:    Caleb Nii Tetteh Tsuru Addy
- * @date:      2nd June, 2020 
+ * @date:      8th June, 2020 
  * @email:     calebniitettehaddy@gmail.com 
  * @twitter:   @cnttaddy
- * @github :   https://github.com/niitettehtsuru/PingPong
- * @codepen:   https://codepen.io/niitettehtsuru/pen/KKVpwoy
+ * @github :   https://github.com/niitettehtsuru/BrickBreaker
  * @license:   GNU General Public License v3.0
- */  
+ */ 
 class Paddle
 {
     constructor(game)
