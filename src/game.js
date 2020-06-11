@@ -107,67 +107,82 @@ class Game
     }
     setControls()
     { 
-        let pausedPopUpPrompt = //prompt that shows when the user pauses the game
-        `<article id='pausedpopup' class='hide-it'>
-            <header> 
-                <div class = 'row text-center'>
-                    <label>PAUSED</label>  
-                </div>   
-                <hr> 
-                <div class = 'row'>
-                    <div class="col-xs-6 text-center">  
-                        <button type='button' id='resumegamebutton' class='btn btn-warning btn-xs'>Resume Game</button>  
-                    </div> 
-                </div>   
-            </header>    
-        </article>`; 
-        let gameoverPopUpPrompt = //prompt that shows when the game is over
-        `<article id='gameoverpopup' class='hide-it'>
-            <header> 
-                <div class = 'row text-center'>
-                    <label>GAMEOVER</label>
+        //create prompt that shows up when game is pressed
+        let pausedPrompt = document.createElement("article"); 
+        pausedPrompt.id  = 'pausedpopup';
+        pausedPrompt.classList.add("hide-it"); 
+        pausedPrompt.innerHTML = 
+        `<header> 
+            <div class = 'row text-center'>
+                <label>PAUSED</label>  
+            </div>   
+            <hr> 
+            <div class = 'row'>
+                <div class="col-xs-6 text-center">  
+                    <button type='button' id='resumegamebutton' class='btn btn-warning btn-xs'>Resume Game</button>  
                 </div> 
-                <hr>    
-                <div class = 'row'>
-                    <div class="col-xs-6 text-center">
-                        <button type='button' id='restartbutton' class='btn btn-primary btn-xs'>Start All Over</button> 
-                    </div>
-                    <div class="col-xs-6 text-center">
-                        <button type='button' id='replaylevelbutton' class='btn btn-warning btn-xs'>Replay Level</button> 
-                    </div>
+            </div>   
+        </header>    
+        `; 
+        document.body.appendChild(pausedPrompt);//add paused prompt to the body 
+        
+        //create prompt that shows up when game is over
+        let gameOverPrompt = document.createElement("article"); 
+        gameOverPrompt.id  = 'gameoverpopup';
+        gameOverPrompt.classList.add("hide-it"); 
+        gameOverPrompt.innerHTML = 
+        `<header> 
+            <div class = 'row text-center'>
+                <label>GAMEOVER</label>
+            </div> 
+            <hr>    
+            <div class = 'row'>
+                <div class="col-xs-6 text-center">
+                    <button type='button' id='restartbutton' class='btn btn-primary btn-xs'>Start All Over</button> 
+                </div>
+                <div class="col-xs-6 text-center">
+                    <button type='button' id='replaylevelbutton' class='btn btn-warning btn-xs'>Replay Level</button> 
+                </div>
+            </div> 
+        </header>     
+        `; 
+        document.body.appendChild(gameOverPrompt);//add gameover prompt to the body
+          
+        //create prompt that shows up to display the score
+        let gameScorePrompt = document.createElement("article"); 
+        gameScorePrompt.id  = 'scoreBoard'; 
+        gameScorePrompt.innerHTML = 
+        `<header> 
+            <h1>Level:<span id='levelspan'>1</span></h1>
+            <h1>Score: <span id='scorespan'>0</span></h1> 
+        </header>
+        <a href="https://github.com/niitettehtsuru/BrickBreaker">Github</a>     
+        `; 
+        document.body.appendChild(gameScorePrompt);//add paused prompt to the body
+        
+        //create prompt that shows up at the start of every level
+        let levelIntroPrompt = document.createElement("article"); 
+        levelIntroPrompt.id  = 'levelintropopup'; 
+        levelIntroPrompt.classList.add("hide-it"); 
+        levelIntroPrompt.innerHTML = 
+        `<header> 
+            <div class = 'row text-center'>
+                <label>LEVEL  <span id='numOfLevel'></span></label> 
+            </div>  
+            <hr>   
+            <div class = 'row'> 
+                <div class="col-xs-2 text-center"> 
+                </div>
+                <div class="col-xs-8 text-center">
+                     <button type='button' id='startlevelbutton' class='btn btn-warning btn-xs'>Play Level</button> 
+                </div>
+                <div class="col-xs-2 text-center"> 
                 </div> 
-            </header>    
-        </article>`; 
-        let gameScorePrompt = //prompt that shows the current score and level of the game
-        `<article id='scoreBoard'>
-            <header> 
-                <h1>Level:<span id='levelspan'>1</span></h1>
-                <h1>Score: <span id='scorespan'>0</span></h1> 
-            </header>
-            <a href="https://github.com/niitettehtsuru/BrickBreaker">Github</a> 
-        </article>`;
-        let levelIntroPrompt = //prompt that shows at the start of every level
-        `<article id='levelintropopup' class='hide-it'>
-            <header> 
-                <div class = 'row text-center'>
-                    <label>LEVEL  <span id='numOfLevel'></span></label> 
-                </div>  
-                <hr>   
-                <div class = 'row'> 
-                    <div class="col-xs-2 text-center"> 
-                    </div>
-                    <div class="col-xs-8 text-center">
-                         <button type='button' id='startlevelbutton' class='btn btn-warning btn-xs'>Play Level</button> 
-                    </div>
-                    <div class="col-xs-2 text-center"> 
-                    </div> 
-                </div>   
-            </header>    
-        </article>`;   
-        $('body').append(pausedPopUpPrompt);  
-        $('body').append(gameoverPopUpPrompt);
-        $('body').append(gameScorePrompt);
-        $('body').append(levelIntroPrompt);   
+            </div>   
+        </header>     
+        `; 
+        document.body.appendChild(levelIntroPrompt);//add level intro prompt to the body 
+        
         document.addEventListener('keydown',(event)=>
         {  
             let x = event.which || event.keyCode; 
@@ -189,8 +204,7 @@ class Game
         //when user clicks button to start a level 
         document.getElementById('startlevelbutton').addEventListener('click',(event)=>
         {     
-            this.toggleLevelIntroState();   
-            //document.getElementById('gamestatsindicator').classList.remove("hide-it"); //show the game stats indicator 
+            this.toggleLevelIntroState();    
         });   
         //when player clicks button to replay the current level
         document.getElementById('replaylevelbutton').addEventListener('click',(event)=>
